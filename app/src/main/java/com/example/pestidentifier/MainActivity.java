@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView result, confidence;
     ImageView imageView;
-    Button picture;
+    Button picture, open_gallery;
     int imageSize = 224;
 
     @Override
@@ -43,6 +44,20 @@ public class MainActivity extends AppCompatActivity {
         confidence = findViewById(R.id.confidence);
         imageView = findViewById(R.id.imageView);
         picture = findViewById(R.id.button);
+        //go_to_main = findViewById(R.id.go_to_dash);
+        open_gallery = findViewById(R.id.btn_open_gallery);
+
+        open_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 10);
+            }
+        });
+
+
 
         picture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void classifyImage(Bitmap image) {
+
         try {
             ModelUnquant model = ModelUnquant.newInstance(getApplicationContext());
 
@@ -116,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 String message = desc_title + description + control_measures_title+control_measures;
 
 
-                result.setText("\t"+classes[maxPos].toUpperCase()+"\n"+message);
+                result.setText("\t"+classes[maxPos].toUpperCase()+"\n\n"+message);
 
             }
             else if (classes[maxPos] == "armyworm" ) {
@@ -136,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 //Combine all the information into a single formatted text line
                 String message = desc_title + description + control_measures_title+control_measures;
 
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message);
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message);
 
             }
             else if (classes[maxPos] == "beetle" ) {
@@ -158,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 String message = desc_title + description + control_measures_title+control_measures;
 
 
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message);
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message);
 
             }
             else if (classes[maxPos] == "bollworm" ) {
@@ -177,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 //Combine all the information into a single formatted text line
                 String message = desc_title + description + control_measures_title+control_measures;
 
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message);
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message);
             }
             else if (classes[maxPos] == "grasshoper" ) {
 
@@ -196,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 String message = desc_title + description + control_measures_title+control_measures;
 
 
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message);
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message);
             }
 
             else if (classes[maxPos] == "mites" ) {
@@ -215,8 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 //Combine all the information into a single formatted text line
                 String message = desc_title + description + control_measures_title+control_measures;
 
-
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message);
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message);
             }
 
 
@@ -234,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 //Combine all the information into a single formatted text line
                 String message = desc_title + description + control_measures_title+control_measures;
 
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message+"\n");
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message+"\n");
             }
             else if (classes[maxPos] == "sawfly" ) {
 
@@ -254,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message+"\n");
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message+"\n");
             }
             else if (classes[maxPos] == "stem_borer" ) {
 
@@ -273,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                result.setText(classes[maxPos].toUpperCase()+"\n"+message+"\n");
+                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message+"\n");
             }
             else{
                 result.setText("Sorry Image not part of known classifications\n");
@@ -306,6 +321,25 @@ public class MainActivity extends AppCompatActivity {
 
             image = Bitmap.createScaledBitmap(image,imageSize,imageSize,false);
             classifyImage(image);
+
+        } else if (requestCode == 10) {
+
+            if (data!=null){
+                Uri uri = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                    imageView.setImageBitmap(bitmap);
+
+                    //int dimension = Math.min(bitmap.getWidth(),bitmap.getHeight());
+                    //bitmap = ThumbnailUtils.extractThumbnail(bitmap,dimension,dimension);
+
+                    //classifyImage(bitmap);
+
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+
+            }
 
         }
         super.onActivityResult(requestCode, resultCode, data);

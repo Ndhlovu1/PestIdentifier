@@ -11,9 +11,11 @@ public class SplashScreen extends AppCompatActivity {
 
     //Use the handler function to determine the load duration
     Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Use the fullScreen and hide the notifications bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
 
@@ -22,11 +24,11 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 //Use the intent package to load a next activity
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                Intent intent = new Intent(SplashScreen.this, UploadCapture.class);
                 startActivity(intent);
                 finish();
             }
-        }, 10000);
+        }, 4000);
 
 
 

@@ -7,6 +7,8 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -18,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PestIdentifier"
         tools:targetApi="33">
+        <activity
+            android:name=".UploadCapture"
+            android:exported="false" />
         <activity
             android:name=".Dashboard"
             android:exported="false" />
