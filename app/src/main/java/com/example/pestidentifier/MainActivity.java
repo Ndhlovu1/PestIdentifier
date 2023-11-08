@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            String[] classes = {"aphids", "armyworm", "beetle", "bollworm", "grasshoper", "mites", "mosquito", "sawfly", "stem_borer"};
+            String[] classes = {"aphids", "armyworm", "beetle", "bollworm", "locust", "mites", "mosquito", "sawfly", "stem_borer"};
 
             if (classes[maxPos] == "aphids" ){
 
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
                 result.setText(classes[maxPos].toUpperCase()+"\n\n"+message);
             }
-            else if (classes[maxPos] == "grasshoper" ) {
+            else if (classes[maxPos] == "locust" ) {
 
                 String boldValue = "\033[0;1m";
 
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 String message = desc_title + description + control_measures_title+control_measures;
 
 
-                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message);
+                result.setText("LOCUST"+"\n\n"+message);
             }
 
             else if (classes[maxPos] == "mites" ) {
@@ -276,12 +276,10 @@ public class MainActivity extends AppCompatActivity {
                 String boldValue = "\033[0;1m";
 
                 String desc_title = "Description :\n";
-                String description = "Sawflies are a group of insects that are closely related to wasps and bees. Sawflies are typically small to\n" +
-                        "medium-sized insects, with a body length ranging from a few millimeters to a few centimeters. They have\n" +
-                        "two pairs of wings, and their abdomen is often brightly colored.\n\n";
+                String description = "This pest attacks maize and sorghum, boring into the stems and causing them to break. It is a major pest of maize in Namibia, causing significant yield losses.\n\n";
 
                 String control_measures_title = "Control Measures\n";
-                String control_measures = "Apply horticultural oil to suffocate sawflies and their eggs. This method is safe for plants and the surrounding ecosystem.\n";
+                String control_measures = "Use Bt-based insecticides specific to stem borers. Bt is a safe and effective biological control against certain insect larvae\n";
 
                 //Combine all the information into a single formatted text line
                 String message = desc_title + description + control_measures_title+control_measures;

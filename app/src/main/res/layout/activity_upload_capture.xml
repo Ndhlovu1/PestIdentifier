@@ -10,12 +10,26 @@
     tools:context=".UploadCapture">
 
 
-    <ImageView
-        android:id="@+id/imageView5"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/no_bg" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
+        android:layout_margin="10dp"
+        android:textSize="26dp"
+        android:textColor="#013B75"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="PEST IDENTIFIER" />
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/roach_bg" />
+
 
     <TextView
         android:id="@+id/label"
