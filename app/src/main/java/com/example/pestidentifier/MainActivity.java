@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            String[] classes = {"aphids", "armyworm", "beetle", "bollworm", "locust", "mites", "mosquito", "sawfly", "stem_borer"};
+            String[] classes = {"aphids", "armyworm", "beetle", "bollworm", "locust", "mites", "mosquito", "stem_borer"};
 
             if (classes[maxPos] == "aphids" ){
 
@@ -251,26 +251,7 @@ public class MainActivity extends AppCompatActivity {
 
                 result.setText(classes[maxPos].toUpperCase()+"\n\n"+message+"\n");
             }
-            else if (classes[maxPos] == "sawfly" ) {
 
-
-                String boldValue = "\033[0;1m";
-
-                String desc_title = "Description :\n";
-                String description = "Sawflies are a group of insects that are closely related to wasps and bees. Sawflies are typically small to\n" +
-                        "medium-sized insects, with a body length ranging from a few millimeters to a few centimeters. They have\n" +
-                        "two pairs of wings, and their abdomen is often brightly colored.\n\n";
-
-                String control_measures_title = boldValue + "Control Measures\n";
-                String control_measures = "Apply horticultural oil to suffocate sawflies and their eggs. This method is safe for plants and the surrounding ecosystem.\n";
-
-                //Combine all the information into a single formatted text line
-                String message = desc_title + description + control_measures_title+control_measures;
-
-
-
-                result.setText(classes[maxPos].toUpperCase()+"\n\n"+message+"\n");
-            }
             else if (classes[maxPos] == "stem_borer" ) {
 
                 String boldValue = "\033[0;1m";
